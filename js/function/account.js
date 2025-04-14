@@ -1,7 +1,7 @@
 //jquery
 $(document).ready(function () {
    
-  
+  const token = localStorage.getItem('token');
   
 
     $("#login-form").submit(function (e) {
@@ -78,7 +78,40 @@ $(document).ready(function () {
             }
           });
       });
+      $("#change-password-form").submit(function (e) {
+        e.preventDefault(); // Ngăn reload trang
       
+        
+        var oldPassword = $("#old-password").val();
+      
+        var newPassword1 = $("#new-password1").val();
+        var newPassword2 = $("#new-password2").val();
+      
+        if (newPassword1 !== newPassword2) {
+          alert("Mật khẩu không trùng khớp!");
+          return;
+        }
+        $.ajax({
+          method: "PUT",
+          url: "https://java.thepointsaver.com/user/change-password", // đổi URL nếu cần
+          contentType: "application/json",
+          headers: {
+            "Authorization": "Bearer " + token
+        },
+          data: JSON.stringify({
+            oldPassword: oldPassword,
+            newPassword: newPassword1
+          }),
+          success: function () {
+            alert("Đổi password thành công");
+            localStorage.removeItem('token');
+            window.location.href = "login.html";
+          },
+          error: function (xhr) {
+            alert("Đổi password  thất bại: " + xhr.responseJSON?.message || "Lỗi không xác định");
+          }
+        });
+      });
       
   });
   

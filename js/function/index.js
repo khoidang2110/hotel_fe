@@ -6,9 +6,13 @@ $(document).ready(function () {
   if (token) {
       $('#login-btn').addClass('d-none');  // Ẩn nút Login
       $('#logout-btn').removeClass('d-none');  // Hiển thị nút Logout
+      $("#user-menu").removeClass("d-none");
+
   } else {
       $('#login-btn').removeClass('d-none');  // Hiển thị nút Login
       $('#logout-btn').addClass('d-none');  // Ẩn nút Logout
+      $("#user-menu").addClass("d-none");
+
   }
 
   // Xử lý sự kiện Logout
@@ -17,6 +21,7 @@ $(document).ready(function () {
       localStorage.removeItem('token');
       
       // Ẩn nút Logout và hiển thị lại nút Login
+      $("#user-menu").addClass("d-none");
       $('#logout-btn').addClass('d-none');
       $('#login-btn').removeClass('d-none');
       
