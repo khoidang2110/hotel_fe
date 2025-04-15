@@ -5,6 +5,26 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Montana - Single Room</title>
+    <style>
+        .room_type_img {
+            overflow: hidden;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .room_type_img img {
+            transition: all 0.4s ease;
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        
+        .room_type_img:hover img {
+            transform: scale(1.05); /* phóng to ảnh */
+            opacity: 0.85;           /* làm mờ nhẹ */
+        }
+        </style>
+        
     <meta name="description" content="Luxury Single Room at Montana Hotel">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -111,10 +131,17 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
+
                     <div class="room_details_content mt-5">
+                        
+                       <div class="room_type_img">
                         <div class="room_img_main mb-60">
                             <img id="roomImage" src="" alt="Room Image">
+                      
+                         </div>
                         </div>
+
+                       
                         <div class="room_heading_info mb-80">
                             <div class="room_heading d-flex justify-content-between align-items-center">
                                 <div class="room_heading_inner">
