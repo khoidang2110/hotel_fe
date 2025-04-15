@@ -22,6 +22,9 @@
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/slicknav.css">
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- Add your new CSS file -->
+   
 </head>
 
 <body>
@@ -98,7 +101,7 @@
     <!-- header-end -->
 
     <!-- bradcam_area_start -->
-    <div class="bradcam_area breadcam_bg_1">
+    <div class="bradcam_area breadcam_bg_1" id="room-name">
         <h3>Single Room Details</h3>
     </div>
     <!-- bradcam_area_end -->
@@ -108,9 +111,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
-                    <div class="room_details_content">
+                    <div class="room_details_content mt-5">
                         <div class="room_img_main mb-60">
-                            <img src="img/rooms/1.png" alt="">
+                            <img id="roomImage" src="" alt="Room Image">
                         </div>
                         <div class="room_heading_info mb-80">
                             <div class="room_heading d-flex justify-content-between align-items-center">
@@ -118,7 +121,7 @@
                                     <span>From $250/night</span>
                                     <h3>Single Room</h3>
                                 </div>
-                                <div class="room_details_policy mb-80">
+                                <div class="room_details_policy mb-80 mt-4">
                                     <h4 class="mb-30">Policies</h4>
                                     <div class="row">
                                         <div class="col-md-6">
@@ -146,7 +149,7 @@
                                 
                              
                             </div>
-                            <div class="room_booking_btn text-center mb-80">
+                            <div class="room_booking_btn text-center mb-80 mt-4 mb-4">
                                 <a href="#test-form" class="boxed-btn3 popup-with-form">Book This Room Now</a>
                             </div>
                             <div class="room_highlights mt-4">
@@ -173,7 +176,7 @@
                             </div>
                         </div>
 
-                        <div class="room_details_description mb-80">
+                        <div class="room_details_description mb-80 mt-4">
                             <h4 class="mb-30">Room Overview</h4>
                             <p>The Single Room offers an elegant blend of comfort and luxury, designed for discerning travelers who appreciate refined accommodations. This spacious room provides a tranquil retreat after a day of exploration or business, featuring premium amenities and attentive service that Montana Hotel is known for.</p>
                             
@@ -273,93 +276,11 @@
                             
                             <!-- Individual Reviews -->
                             <div class="review_list" id="review-list">
-                                <!-- <div class="single_review mb-4 pb-4 border-bottom">
-                                    <div class="review_header d-flex justify-content-between mb-3">
-                                        <div class="reviewer_info">
-                                            <h5>Sarah J.</h5>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                        </div>
-                                        <div class="review_date">
-                                            <p>March 15, 2025</p>
-                                        </div>
-                                    </div>
-                                    <div class="review_content">
-                                        <p>"Absolutely stunning room with breathtaking views! The king-size bed was incredibly comfortable, and the marble bathroom was a luxurious touch. Staff was attentive and friendly throughout our stay. The complimentary breakfast exceeded our expectations with a wide variety of options. Will definitely book this room again on our next visit to the city."</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="single_review mb-4 pb-4 border-bottom">
-                                    <div class="review_header d-flex justify-content-between mb-3">
-                                        <div class="reviewer_info">
-                                            <h5>Michael T.</h5>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-o"></i>
-                                            </div>
-                                        </div>
-                                        <div class="review_date">
-                                            <p>February 28, 2025</p>
-                                        </div>
-                                    </div>
-                                    <div class="review_content">
-                                        <p>"I stayed in the Single Room for a business trip and was impressed by the quality and comfort. The workspace was perfect for getting work done, and the high-speed Wi-Fi was reliable. The room was spacious and well-appointed. My only minor complaint was that the air conditioning was a bit loud at night. Overall, a great choice for business travelers who want comfort and convenience."</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="single_review mb-4 pb-4 border-bottom">
-                                    <div class="review_header d-flex justify-content-between mb-3">
-                                        <div class="reviewer_info">
-                                            <h5>Emma & David</h5>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                        </div>
-                                        <div class="review_date">
-                                            <p>January 12, 2025</p>
-                                        </div>
-                                    </div>
-                                    <div class="review_content">
-                                        <p>"We celebrated our anniversary in the Single Room and couldn't have asked for a better experience. The hotel staff went above and beyond, surprising us with champagne and chocolate-covered strawberries. The balcony was perfect for enjoying morning coffee with a beautiful view. The bathroom was immaculate and luxurious. Highly recommend this room for any special occasion!"</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="single_review">
-                                    <div class="review_header d-flex justify-content-between mb-3">
-                                        <div class="reviewer_info">
-                                            <h5>James W.</h5>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-o"></i>
-                                            </div>
-                                        </div>
-                                        <div class="review_date">
-                                            <p>December 7, 2024</p>
-                                        </div>
-                                    </div>
-                                    <div class="review_content">
-                                        <p>"Great room overall with excellent amenities. The Nespresso machine was a nice touch, and I appreciated the quality toiletries in the bathroom. The bed was very comfortable, and the room was quiet despite being in a busy part of the city. The only reason I'm not giving 5 stars is because the check-in process took longer than expected. Would still recommend this room to others and would stay again."</p>
-                                    </div>
-                                </div> -->
+                            
                             </div>
                             
                             <!-- Write a Review Form -->
-                            <div class="write_review mt-5">
+                            <div class="write_review mt-5" style="display: none;">
                                 <h5 class="mb-4">Share Your Experience</h5>
                                 <form 
                                 
