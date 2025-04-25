@@ -20,7 +20,8 @@ $(document).ready(function () {
           }),
           success: function (response) {
             if (response.data) {
-              localStorage.setItem("token", response.data);
+              localStorage.setItem("token", response.data.token);
+              localStorage.setItem("fullName", response.data.fullName);
               alert("Đăng nhập thành công");
               window.location.href = "index.html";
             } else {
@@ -28,7 +29,15 @@ $(document).ready(function () {
             }
           },
           error: function (xhr) {
-            alert("Đăng nhập thất bại: " + xhr.responseJSON?.message || "Lỗi không xác định");
+            const message = xhr.responseJSON?.message || "Có lỗi xảy ra, vui lòng thử lại.";
+          
+            if (xhr.status === 403) {
+              alert("Tài khoản bị khóa: " + message);
+            } else if (xhr.status === 400) {
+              alert("Lỗi đăng nhập: " + message);
+            } else {
+              alert("Lỗi không xác định (" + xhr.status + "): " + message);
+            }
           }
         });
       });
