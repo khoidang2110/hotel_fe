@@ -318,7 +318,7 @@ $(document).ready(function () {
                     <button type="button" class="btn btn-link btn-primary btn-lg edit-payment-btn" title="Edit" data-id="${payment.id}">
                       <i class="fa fa-edit"></i>
                     </button>
-                    <button type="button" class="btn btn-link btn-danger" title="Remove">
+<button type="button" class="btn btn-link btn-danger delete-payment-btn" data-id="${payment.id}" title="Remove">
                       <i class="fa fa-times"></i>
                     </button>
                   </div>
@@ -330,7 +330,7 @@ $(document).ready(function () {
           
           // Re-attach event handlers after adding new elements
           attachEditButtonHandlers();
-          
+          attachDeleteButtonHandlers();
         } else {
           alert("Failed to load payments.");
         }
@@ -359,6 +359,30 @@ $(document).ready(function () {
     });
   }
 
+  function attachDeleteButtonHandlers() {
+    $('.delete-payment-btn').off('click').on('click', function () {
+      const paymentId = parseInt($(this).data('id')); // Ép kiểu về int
+  
+      if (confirm('Are you sure you want to delete this payment?')) {
+        $.ajax({
+          url: `https://java.thepointsaver.com/payment/delete?id=${paymentId}`,
+          method: 'DELETE',
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+          success: function (response) {
+            alert('Payment deleted successfully');
+            loadPayments();
+          },
+          error: function (xhr) {
+            alert('Delete failed: ' + xhr.responseText);
+          }
+        });
+      }
+    });
+  }
+  
+  
   function getPaymentById(paymentId) {
     $.ajax({
       url: `https://java.thepointsaver.com/payment/get-by-id`,
