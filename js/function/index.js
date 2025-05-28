@@ -56,6 +56,8 @@ $(document).ready(function () {
       $('#login-btn').removeClass('d-none');  // Hiển thị nút Login
       $('#logout-btn').addClass('d-none');  // Ẩn nút Logout
       $("#user-menu").addClass("d-none");
+            $('#admin-btn').addClass('d-none'); // <== THÊM DÒNG NÀY
+
 
   }
 
@@ -68,7 +70,8 @@ $(document).ready(function () {
       $("#user-menu").addClass("d-none");
       $('#logout-btn').addClass('d-none');
       $('#login-btn').removeClass('d-none');
-      
+            $('#admin-btn').addClass('d-none'); // <== THÊM DÒNG NÀY
+
       // Điều hướng đến trang login hoặc trang chủ (tuỳ chọn)
       window.location.href = '/login.html';  // Hoặc điều hướng về trang chủ: window.location.href = '/';
   });
