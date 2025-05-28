@@ -35,7 +35,7 @@ $(document).ready(function () {
               <tr>
                 <td>${service.id}</td>
                 <td>${service.name}</td>
-                <td>${service.price} USD</td>
+                <td>${service.price} vnd</td>
                 
                 <td>
                   <div class="form-button-action">
