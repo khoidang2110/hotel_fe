@@ -650,60 +650,7 @@
                   </div>
                 </li>
 
-                <!-- <li class="nav-item topbar-user dropdown hidden-caret">
-                  <a
-                    class="dropdown-toggle profile-pic"
-                    data-bs-toggle="dropdown"
-                    href="#"
-                    aria-expanded="false"
-                  >
-                    <div class="avatar-sm">
-                      <img
-                        src="../assets/img/profile.jpg"
-                        alt="..."
-                        class="avatar-img rounded-circle"
-                      />
-                    </div>
-                    <span class="profile-username">
-                      <span class="op-7">Hi,</span>
-                      <span class="fw-bold">Hizrian</span>
-                    </span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-user animated fadeIn">
-                    <div class="dropdown-user-scroll scrollbar-outer">
-                      <li>
-                        <div class="user-box">
-                          <div class="avatar-lg">
-                            <img
-                              src="../assets/img/profile.jpg"
-                              alt="image profile"
-                              class="avatar-img rounded"
-                            />
-                          </div>
-                          <div class="u-text">
-                            <h4>Hizrian</h4>
-                            <p class="text-muted">hello@example.com</p>
-                            <a
-                              href="profile.html"
-                              class="btn btn-xs btn-secondary btn-sm"
-                              >View Profile</a
-                            >
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">My Profile</a>
-                        <a class="dropdown-item" href="#">My Balance</a>
-                        <a class="dropdown-item" href="#">Inbox</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Account Setting</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Logout</a>
-                      </li>
-                    </div>
-                  </ul>
-                </li> -->
+    
               </ul>
             </div>
           </nav>
@@ -712,42 +659,21 @@
 
         <div class="container">
           <div class="page-inner">
-            <!-- <div class="page-header">
-              <h3 class="fw-bold mb-3">DataTables.Net</h3>
-              <ul class="breadcrumbs mb-3">
-                <li class="nav-home">
-                  <a href="#">
-                    <i class="icon-home"></i>
-                  </a>
-                </li>
-                <li class="separator">
-                  <i class="icon-arrow-right"></i>
-                </li>
-                <li class="nav-item">
-                  <a href="#">Tables</a>
-                </li>
-                <li class="separator">
-                  <i class="icon-arrow-right"></i>
-                </li>
-                <li class="nav-item">
-                  <a href="#">Datatables</a>
-                </li>
-              </ul>
-            </div> -->
+ 
             <div class="row">
 
               <div class="col-md-12">
                 <div class="card">
                   <div class="card-header">
                     <div class="d-flex align-items-center">
-                      <h4 class="card-title">Payment</h4>
+                      <h4 class="card-title">Service</h4>
                       <button
                         class="btn btn-primary btn-round ms-auto"
                         data-bs-toggle="modal"
                         data-bs-target="#addRowModal"
                       >
                         <i class="fa fa-plus"></i>
-                        Add Payment
+                        Add Service
                       </button>
                     </div>
                   </div>
@@ -785,102 +711,43 @@
                               <div class="row">
                                 <div class="col-sm-12">
                                   <div class="form-group form-group-default">
-                                    <label>Booking ID</label>
+                                    <label>Service name</label>
                                     <input
-                                      id="bookingId"
+                                      id="serviceName"
                                       type="text"
                                       class="form-control"
-                                      placeholder="fill Booking ID"
+                                      placeholder="fill service name"
                                     />
                                   </div>
                                 </div>
-                                <!-- <div class="col-sm-12">
+                                <div class="col-sm-12">
                                   <div class="form-group form-group-default">
-                                    <label>Amount</label>
+                                    <label>Price</label>
                                     <input
-                                      id="amount"
+                                      id="servicePrice"
                                       type="text"
                                       class="form-control"
-                                      placeholder="fill Amount"
+                                      placeholder="fill price"
                                     />
                                   </div>
-                                </div> -->
-                                <div class="col-md-6 pe-0">
-                                  <div class="form-group">
-                                    <label for="paymentMethod">Payment method</label>
-                                    <select
-                                      class="form-select"
-                                      id="paymentMethod"
-                                    >
-                                      <option>CASH</option>
-                                      <option>CREDIT_CARD</option>
-                                      <option>BANK_TRANSFER</option>
-                                      <option>ZALOPAY</option>
-                                    </select>
-                                  </div>
                                 </div>
-                                <div class="col-md-6">
-                                  <div class="form-group">
-                                    <label for="paymentStatus">Status</label>
-                                    <select
-                                      class="form-select"
-                                      id="paymentStatus"
-                                    >
-                                      <option>PENDING</option>
-                                      <option>COMPLETED</option>
-                                      <option>FAILED</option>
-                                    </select>
-                                  </div>
-                                </div>
+                             
                               </div>
                             </form>
                           </div>
                           <div class="modal-footer border-0">
                     <!-- Add button -->
-<button type="button" id="addPaymentBtn" class="btn btn-primary">Add</button>
+<button type="button" id="addServiceBtn" class="btn btn-primary">Add</button>
 
 <!-- Save button -->
-<button type="button" id="savePaymentBtn" class="btn btn-success d-none">Save</button>
-
+<button type="button" id="saveServiceBtn" class="btn btn-success d-none">Save</button>
 
                     
                           </div>
                         </div>
                       </div>
                     </div>
-<!-- modal add service payment -->
 
-<div class="modal fade" id="addServiceModal" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Add Service</h5>
-        <button type="button" class="close" data-bs-dismiss="modal">
-          <span>&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <input type="hidden" id="addServicePaymentId" />
-        <div class="form-group">
-          <label for="serviceId">Service</label>
-          <select id="serviceId" class="form-control">
-            <!-- <option value="1">Service A</option>
-            <option value="2">Service B</option> -->
-            <!-- Load bằng JS nếu cần -->
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="quantity">Quantity</label>
-          <input type="number" id="quantity" class="form-control" min="1" value="1" />
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button id="confirmAddServiceBtn" class="btn btn-primary">Add Service</button>
-        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-      </div>
-    </div>
-  </div>
-</div>
                     <div class="table-responsive">
                       <table
                         id="add-row"
@@ -889,16 +756,14 @@
                       <thead>
                         <tr>
                           <!-- <th>STT</th>  -->
-                          <th>Booking ID</th>
-                          <th>Full Name</th>
-                          <th>Amount</th>
-                          <th>Payment Method</th>
-                          <th>Status</th>
-                          <th>Created At</th>
+                          <th>Service ID</th>
+                          <th>Name</th>
+                          <th>Price</th>
+esc                         
                           <th>Action</th>
                         </tr>
                       </thead>
-                      <tbody id="payment-list">
+                      <tbody id="service-list">
                         <!-- Dữ liệu sẽ được append ở đây -->
                       </tbody>
                       </table>
@@ -1204,6 +1069,6 @@
         });
       });
     </script>
-    <script src="../js/payment.js"></script>
+    <script src="../js/service.js"></script>
   </body>
 </html>

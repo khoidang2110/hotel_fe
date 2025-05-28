@@ -1,354 +1,129 @@
-// $(document).ready(function () {
-//     const token = localStorage.getItem("token");
 
-
-
-
-    
-// function loadPayments() {
-//   $.ajax({
-//     url: `https://java.thepointsaver.com/payment/list`,
-//     method: "POST",
-//     dataType: "json",
-//     contentType: "application/json", // 👈 CẦN THÊM DÒNG NÀY
-
-//     headers: {
-//         Authorization: "Bearer " + token,
-//       },
-//       data: JSON.stringify({
-//         page: 0,
-//         size: 20,
-//       }),
-//     success: function (response) {
-//       console.log("✅ Reloaded payments:", response);
-
-//       if (response.code === 0) {
-//         let payments = response.data;
-//          // Đảo ngược danh sách thanh toán để render từ mới nhất
-//          payments = payments.reverse();
-//         const $paymentList = $("#payment-list");
-//         $paymentList.empty();
-
-//         payments.forEach((payment, index) => {
-//             const createdAt = new Date(payment.createdAt).toLocaleDateString("en-US", {
-//               month: "long",
-//               day: "numeric",
-//               year: "numeric",
-//             });
-          
-//             const html = `
-//               <tr>
-              
-//                  <td>${payment.booking.id}</td>
-//                 <td>${payment.booking.user.fullName}</td>
-//                 <td>${payment.amount} USD</td>
-//                 <td>${payment.paymentMethod}</td>
-//                 <td>${payment.status}</td>
-//                 <td>${createdAt}</td>
-//                 <td>
-//                   <div class="form-button-action">
-//                     <button type="button" class="btn btn-link btn-primary btn-lg  edit-payment-btn" title="Edit" data-id="${payment.id}" >
-//                       <i class="fa fa-edit"></i>
-//                     </button>
-//                     <button type="button" class="btn btn-link btn-danger" title="Remove">
-//                       <i class="fa fa-times"></i>
-//                     </button>
-//                   </div>
-//                 </td>
-//               </tr>
-//             `;
-//             $paymentList.append(html);
-//           });
-          
-//       } else {
-//         alert("Failed to load payments.");
-//       }
-//     },
-//     error: function (xhr, status, error) {
-//       console.error("❌ Error loading payments:", status, error);
-
-//       if (xhr.status === 403) {
-//         alert("Your session has expired. Redirecting to login...");
-//       //  window.location.href = "/login.html"; // Thay bằng đường dẫn đến trang login của bạn
-//       } else {
-//         alert("Something went wrong while loading payments.");
-//       }
-//     },
-//   });
-// }
-// loadPayments();
-
-
-
-
-// function createPayment() {
-//   // Get values from form
-//   const bookingId = parseInt($("#bookingId").val());
-//   const amount = parseFloat($("#amount").val());
-//   const paymentMethod = $("#paymentMethod").val();
-//   const status = $("#paymentStatus").val();
-
-//   const paymentData = {
-//     bookingId,
-//     amount,
-//     paymentMethod,
-//     status,
-//   };
-
-//   $.ajax({
-//     url: "https://java.thepointsaver.com/payment/create",
-//     method: "POST",
-//     dataType: "json",
-//     contentType: "application/json",
-//     headers: {
-//       Authorization: "Bearer " + token,
-//     },
-//     data: JSON.stringify(paymentData),
-//     success: function (response) {
-//       console.log("✅ Payment created successfully:", response);
-//       loadPayments();
-
-//       // Reset form
-//       $("#bookingId").val("");
-//       $("#amount").val("");
-//       $("#paymentMethod").val("CASH");
-//       $("#paymentStatus").val("PENDING");
-
-//       // Close modal (Bootstrap 4)
-//       $("#addRowModal").modal("hide");
-//       alert("Payment created successfully");
-
-//     },
-//     error: function (xhr, status, error) {
-//       if (xhr.status === 400) {
-//         const errorMessage = xhr.responseJSON.message || "An error occurred. Please try again.";
-//         alert("Error: " + errorMessage);
-//       } else {
-//       //  console.error("❌ Error creating payment:", status, error);
-//         alert("Failed to create payment. Please try again.");
-//       }
-//     },
-//   });
-// }
-
-// $("#addPaymentBtn").click(function () {
-//   createPayment();
-
-//   function getPaymentById(paymentId) {
-//     $.ajax({
-//       url: `https://java.thepointsaver.com/payment/get-by-id`,
-//       method: "GET",
-//       dataType: "json",
-//       contentType: "application/json",
-//       headers: {
-//         Authorization: "Bearer " + token, // Sử dụng token mà bạn đã có
-//       },
-//       data: {
-//         id: paymentId, // Truyền id payment vào dưới dạng query string
-//       },
-//       success: function(response) {
-//         console.log("Payment data:", response);
-//         if (response.code === 0) {
-//           const payment = response.data;
-//           // Bây giờ bạn có thể sử dụng dữ liệu trả về, ví dụ:
-//           openEditModal(payment);
-//         } else {
-//           alert("Failed to fetch payment details.");
-//         }
-//       },
-//       error: function(xhr, status, error) {
-//         console.error("Error fetching payment:", status, error);
-//         alert("Something went wrong while fetching payment details.");
-//       }
-//     });
-//   }
-  
-//   let editingPaymentId = null; // Biến này sẽ lưu id của payment đang được chỉnh sửa
-
-//   // Mở modal và điền dữ liệu của payment vào form
-//   function openEditModal(payment) {
-//     // Lưu lại ID của payment đang chỉnh sửa
-//     editingPaymentId = payment.id;
-  
-//     // Điền các giá trị vào các trường trong form
-//     $('#bookingId').val(payment.booking.id);
-//     $('#amount').val(payment.amount);
-//     $('#paymentMethod').val(payment.paymentMethod);
-//     $('#paymentStatus').val(payment.status);
-  
-//     // Mở modal
-//     $('#addRowModal').modal('show');
-//   }
-  
-//   // Cập nhật hoặc thêm payment khi bấm nút Add
-//   $('#addRowButtonk').on('click', function () {
-//     const bookingId = $('#bookingId').val();
-//     const amount = $('#amount').val();
-//     const paymentMethod = $('#paymentMethod').val();
-//     const paymentStatus = $('#paymentStatus').val();
-  
-//     // Kiểm tra dữ liệu đầu vào
-//     if (!bookingId || !amount || !paymentMethod || !paymentStatus) {
-//       alert("Please fill in all fields.");
-//       return;
-//     }
-  
-//     // Tạo payload để gửi đi
-//     const data = {
-//       bookingId: bookingId,
-//       amount: amount,
-//       paymentMethod: paymentMethod,
-//       paymentStatus: paymentStatus,
-//     };
-  
-//     if (editingPaymentId) {
-//       // Nếu đang chỉnh sửa, gửi yêu cầu PUT để cập nhật
-//       $.ajax({
-//         url: `https://java.thepointsaver.com/payment/update/${editingPaymentId}`,
-//         method: "PUT",
-//         contentType: "application/json",
-//         headers: {
-//           Authorization: "Bearer " + token,
-//         },
-//         data: JSON.stringify(data),
-//         success: function (response) {
-//           if (response.code === 0) {
-//             alert("Payment updated successfully.");
-//             loadPayments(); // Reload danh sách payments
-//             $('#addRowModal').modal('hide'); // Đóng modal
-//           } else {
-//             alert("Failed to update payment.");
-//           }
-//         },
-//         error: function (xhr, status, error) {
-//           alert("Error updating payment.");
-//         }
-//       });
-//     } else {
-//       // Nếu không có payment id, gửi yêu cầu POST để tạo mới
-//       $.ajax({
-//         url: `https://java.thepointsaver.com/payment/create`,
-//         method: "POST",
-//         contentType: "application/json",
-//         headers: {
-//           Authorization: "Bearer " + token,
-//         },
-//         data: JSON.stringify(data),
-//         success: function (response) {
-//           if (response.code === 0) {
-//             alert("Payment created successfully.");
-//             loadPayments(); // Reload danh sách payments
-//             $('#addRowModal').modal('hide'); // Đóng modal
-//           } else {
-//             alert("Failed to create payment.");
-//           }
-//         },
-//         error: function (xhr, status, error) {
-//           alert("Error creating payment.");
-//         }
-//       });
-//     }
-//   });
-  
- 
-  
-
-
-//   $(document).on('click', '.edit-payment-btn', function() {
-//     const paymentId = $(this).data('id'); // Lấy giá trị của data-id
-//     console.log('Editing payment with ID:', paymentId);
-  
-//     getPaymentById(paymentId); // Gọi hàm để lấy thông tin payment từ API
-//     openEditModal(payment);
-
-//   });
-// });
-
-
-
-
-
-
-//   });
-  
 
 $(document).ready(function () {
   const token = localStorage.getItem("token");
 
-  function loadPayments() {
-    $.ajax({
-      url: `https://java.thepointsaver.com/payment/list`,
-      method: "POST",
-      dataType: "json",
-      contentType: "application/json",
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-      data: JSON.stringify({
-        page: 0,
-        size: 20,
-      }),
-      success: function (response) {
-        console.log("✅ Reloaded payments:", response);
+function loadPayments() {
+  $.ajax({
+    url: `https://java.thepointsaver.com/payment/list`,
+    method: "POST",
+    dataType: "json",
+    contentType: "application/json",
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+    data: JSON.stringify({
+      page: 0,
+      size: 20,
+    }),
+    success: function (response) {
+      console.log("✅ Reloaded payments:", response);
 
-        if (response.code === 0) {
-          let payments = response.data;
-          // Đảo ngược danh sách thanh toán để render từ mới nhất
-          payments = payments.reverse();
-          const $paymentList = $("#payment-list");
-          $paymentList.empty();
+      if (response.code === 0) {
+        let payments = response.data.reverse(); // Mới nhất lên đầu
+        const $paymentList = $("#payment-list");
+        $paymentList.empty(); // Xóa cũ
 
-          payments.forEach((payment, index) => {
-            const createdAt = new Date(payment.createdAt).toLocaleDateString("en-US", {
-              month: "long",
-              day: "numeric",
-              year: "numeric",
-            });
-          
-            const html = `
+        payments.forEach((payment, index) => {
+          const createdAt = new Date(payment.createdAt).toLocaleDateString("vi-VN", {
+            hour: "2-digit",
+            minute: "2-digit",
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+          });
+
+          // 1. Dòng chính
+          $paymentList.append(`
+            <tr>
+              <td>${payment.bookingId || "N/A"}</td>
+              <td>${payment.booking?.user?.fullName || "N/A"}</td>
+              <td>${payment.amount.toLocaleString()} đ</td>
+              <td>${payment.paymentMethod}</td>
+              <td><span class="${payment.status === 'PAID' ? 'text-success' : 'text-warning'}">${payment.status}</span></td>
+              <td>${createdAt}</td>
+              <td>
+                <div class="form-button-action">
+                   <button type="button" class="btn btn-link btn-danger add-service-payment-btn" title="Add" data-id="${payment.id}">
+                   <i class="fa fa-plus" aria-hidden="true"></i>
+
+                  </button>
+                  <button type="button" class="btn btn-link btn-primary btn-lg edit-payment-btn" title="Edit" data-id="${payment.id}">
+                    <i class="fa fa-edit"></i>
+                  </button>
+                  <button type="button" class="btn btn-link btn-danger delete-payment-btn" title="Remove" data-id="${payment.id}">
+                    <i class="fa fa-times"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          `);
+
+          // 2. Dòng bảng con nếu có paymentDetails
+          if (payment.paymentDetails && payment.paymentDetails.length > 0) {
+            $paymentList.append(`
               <tr>
-                <td>${payment.booking.id}</td>
-                <td>${payment.booking.user.fullName}</td>
-                <td>${payment.amount} USD</td>
-                <td>${payment.paymentMethod}</td>
-                <td>${payment.status}</td>
-                <td>${createdAt}</td>
-                <td>
-                  <div class="form-button-action">
-                    <button type="button" class="btn btn-link btn-primary btn-lg edit-payment-btn" title="Edit" data-id="${payment.id}">
-                      <i class="fa fa-edit"></i>
-                    </button>
-<button type="button" class="btn btn-link btn-danger delete-payment-btn" data-id="${payment.id}" title="Remove">
-                      <i class="fa fa-times"></i>
-                    </button>
-                  </div>
+                <td colspan="7">
+                  <table  width="100%" style="background: #f9f9f9;">
+                    <thead>
+                      <tr>
+                        <th class="text-center">STT</th>
+                        <th class="text-center">Dịch vụ</th>
+                        <th class="text-center">Số lượng</th>
+                        <th class="text-center">Đơn giá</th>
+                        <th class="text-center">Thành tiền</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      ${payment.paymentDetails.map((detail, i) => `
+                      <tr>
+  <td class="text-center">${i + 1}</td>
+  <td class="text-center">${detail.service?.name || "N/A"}</td>
+  <td class="text-center">${detail.quantity}</td>
+  <td class="text-center">${detail.price.toLocaleString()} đ</td>
+  <td class="text-center">${detail.total.toLocaleString()} đ</td>
+  <td > 
+   <div class="form-button-action">
+                <button type="button" class="btn btn-link btn-danger delete-service-payment-btn" title="Remove" data-id="${detail.id}">
+                    <i class="fa fa-times"></i>
+                  </button>
+  </td>
+</tr>
+                      `).join("")}
+                    </tbody>
+                  </table>
                 </td>
               </tr>
-            `;
-            $paymentList.append(html);
-          });
-          
-          // Re-attach event handlers after adding new elements
-          attachEditButtonHandlers();
-          attachDeleteButtonHandlers();
-        } else {
-          alert("Failed to load payments.");
-        }
-      },
-      error: function (xhr, status, error) {
-        console.error("❌ Error loading payments:", status, error);
+            `);
+          }
+        });
 
-        if (xhr.status === 403) {
-          alert("Your session has expired. Redirecting to login...");
-          // window.location.href = "/login.html";
-        } else {
-          alert("Something went wrong while loading payments.");
-        }
-      },
-    });
-  }
+        // Gán lại sự kiện sau khi render xong
+        attachEditButtonHandlers();
+        attachDeleteButtonHandlers();
+attachAddServicePaymentHandlers(); // ⬅️ Thêm dòng này
+attachDeleteServicePaymentHandlers();
+
+      } else {
+        alert("❌ Tải danh sách thanh toán thất bại.");
+      }
+    },
+    error: function (xhr, status, error) {
+      console.error("❌ Error loading payments:", status, error);
+      if (xhr.status === 403) {
+        alert("⚠️ Phiên làm việc đã hết hạn. Vui lòng đăng nhập lại.");
+        // window.location.href = "/login.html";
+      } else {
+        alert("Đã có lỗi khi tải dữ liệu thanh toán.");
+      }
+    },
+  });
+}
+
   
   loadPayments();
+
+
 
   // Attach event handlers to edit buttons
   function attachEditButtonHandlers() {
@@ -381,8 +156,60 @@ $(document).ready(function () {
       }
     });
   }
-  
-  
+
+
+  function attachAddServicePaymentHandlers() {
+  $(".add-service-payment-btn").off("click").on("click", function () {
+    const paymentId = $(this).data("id");
+    $("#addServicePaymentId").val(paymentId);
+
+    // Gọi API dịch vụ
+    fetchServices(function (err, services) {
+      if (err) {
+        alert("Không thể tải danh sách dịch vụ");
+        return;
+      }
+
+      const $serviceSelect = $("#serviceId");
+      $serviceSelect.empty();
+      services.forEach(service => {
+        $serviceSelect.append(
+          $("<option></option>")
+            .val(service.id)
+            .text(`${service.name} - ${service.price} vnd`)
+        );
+      });
+
+      // Hiển thị modal
+      const modal = new bootstrap.Modal(document.getElementById("addServiceModal"));
+      modal.show();
+    });
+  });
+}
+
+function attachDeleteServicePaymentHandlers() {
+  $(".delete-service-payment-btn").off("click").on("click", function () {
+    const detailId = $(this).data("id");
+
+    if (confirm("Bạn có chắc muốn xoá dịch vụ này khỏi thanh toán không?")) {
+      $.ajax({
+        url: `https://java.thepointsaver.com/payment/remove-service/${detailId}`,
+        method: "DELETE",
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+        success: function (response) {
+          alert("Dịch vụ đã được xoá khỏi thanh toán");
+          loadPayments();
+        },
+        error: function (xhr) {
+          alert("Xoá thất bại: " + xhr.responseText);
+        },
+      });
+    }
+  });
+}
+
   function getPaymentById(paymentId) {
     $.ajax({
       url: `https://java.thepointsaver.com/payment/get-by-id`,
@@ -451,13 +278,13 @@ $('#addRowModal').on('shown.bs.modal', function () {
   function createPayment() {
     // Get values from form
     const bookingId = parseInt($("#bookingId").val());
-    const amount = parseFloat($("#amount").val());
+   // const amount = parseFloat($("#amount").val());
     const paymentMethod = $("#paymentMethod").val();
     const status = $("#paymentStatus").val();
 
     const paymentData = {
       bookingId,
-      amount,
+     // amount,
       paymentMethod,
       status,
     };
@@ -598,5 +425,57 @@ $("#savePaymentBtn").click(function () {
     alert("No payment selected for editing.");
   }
 });
+
+$("#confirmAddServiceBtn").on("click", function () {
+  const paymentId = parseInt($("#addServicePaymentId").val());
+  const serviceId = parseInt($("#serviceId").val());
+  const quantity = parseInt($("#quantity").val());
+
+  $.ajax({
+    url: "https://java.thepointsaver.com/payment/add-service",
+    method: "POST",
+    contentType: "application/json",
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+    data: JSON.stringify({ paymentId, serviceId, quantity }),
+    success: function (response) {
+      $("#addServiceModal").modal("hide");
+      alert("✅ Added service to payment.");
+      loadPayments(); // Reload table to show detail
+    },
+    error: function (xhr) {
+      alert("❌ Failed to add service: " + (xhr.responseJSON?.message || "Unknown error"));
+    }
+  });
+});
+
+function fetchServices(callback) {
+  $.ajax({
+    url: `https://java.thepointsaver.com/service/list`,
+    method: "POST",
+    dataType: "json",
+    contentType: "application/json",
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+    data: JSON.stringify({
+      page: 0,
+      size: 100,
+    }),
+    success: function (response) {
+      if (response.code === 0) {
+        const services = response.data.reverse(); // Hoặc giữ nguyên thứ tự nếu bạn muốn
+        callback(null, services);
+      } else {
+        callback(new Error("Failed to load services"), null);
+      }
+    },
+    error: function (xhr, status, error) {
+      console.error("❌ Error fetching services:", status, error);
+      callback(new Error("Request failed"), null);
+    }
+  });
+}
 
 });
